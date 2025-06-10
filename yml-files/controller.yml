@@ -1,0 +1,15 @@
+kafka-controller:
+    steps:
+      - name: start Kafka controller
+        command: process-compose -t=False -f
+          taskmanager-files/process-compose.controller.yaml
+    plan: 8
+    replicas: 1
+    isPublic: false
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+        - port: 9094
+          isPublic: false
+      paths: []

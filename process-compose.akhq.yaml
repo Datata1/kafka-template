@@ -1,7 +1,0 @@
-version: "0.5"
-
-processes:
-  kafka:
-    command: sleep 10 && java -Dmicronaut.config.files=./kafka-config/akhq/application.yml -jar akhq-0.25.1-all.jar
-  healthprobe:
-    command: python3 -m http.server 3000

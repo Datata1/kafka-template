@@ -1,3 +1,4 @@
+# TODO: make some values configurable via env vars
 micronaut:
   server:
     port: 8081

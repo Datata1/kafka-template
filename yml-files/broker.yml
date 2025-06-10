@@ -1,0 +1,15 @@
+kafka-broker:
+    steps:
+      - name: start Kafka broker
+        command: process-compose -t=False -f
+          taskmanager-files/process-compose.broker.yaml
+    plan: 8
+    replicas: 1
+    isPublic: false
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+        - port: 9093
+          isPublic: false
+      paths: []

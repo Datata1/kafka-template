@@ -7,7 +7,8 @@ prepare:
         grep linux_amd64 | grep browser_download_url | sed s/.*https/https/ |
         sed s/\".*$// | xargs wget -O $HOME/.local/bin/cs && chmod +x
         $HOME/.local/bin/cs
-    - command: chmod +x ./scripts/*.sh
+    - name: make .sh files executable
+      command: chmod +x ./scripts/*.sh
     - name: install nix dependencies
       command: ./scripts/install-nix-packages.sh
     - name: install kafka and setup SSL
@@ -20,14 +21,13 @@ prepare:
       command: wget
         https://github.com/tchiotludo/akhq/releases/download/0.25.1/akhq-0.25.1-all.jar
 test:
-  steps:
-    - name: "TODO: add tests for every service"
-      command: 'echo "TODO: add tests for every service"'
+  steps: []
 run:
   kafka-broker:
     steps:
-      - name: "start Kafka "
-        command: process-compose -t=False -f process-compose.broker.yaml
+      - name: start Kafka broker
+        command: process-compose -t=False -f
+          taskmanager-files/process-compose.broker.yaml
     plan: 8
     replicas: 1
     isPublic: false
@@ -40,7 +40,9 @@ run:
       paths: []
   kafka-controller:
     steps:
-      - command: process-compose -t=False -f process-compose.controller.yaml
+      - name: start Kafka controller
+        command: process-compose -t=False -f
+          taskmanager-files/process-compose.controller.yaml
     plan: 8
     replicas: 1
     isPublic: false
@@ -53,7 +55,8 @@ run:
       paths: []
   akhq:
     steps:
-      - command: process-compose -t=False -f process-compose.akhq.yaml
+      - name: start akhq
+        command: process-compose -t=False -f taskmanager-files/process-compose.akhq.yaml
     plan: 8
     replicas: 1
     isPublic: true

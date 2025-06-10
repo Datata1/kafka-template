@@ -1,0 +1,17 @@
+akhq:
+    steps:
+      - name: start akhq
+        command: process-compose -t=False -f taskmanager-files/process-compose.akhq.yaml
+    plan: 8
+    replicas: 1
+    isPublic: true
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+        - port: 8081
+          isPublic: true
+      paths:
+        - port: 8081
+          path: /
+          stripPath: false

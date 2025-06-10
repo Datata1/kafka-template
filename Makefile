@@ -1,0 +1,1 @@
+// TODO: automate workspace clean up when user wants to start with a fresh environment, maybe more 

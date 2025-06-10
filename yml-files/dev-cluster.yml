@@ -1,0 +1,14 @@
+  kafka:
+    steps:
+      - name: "start Kafka "
+        command: process-compose -t=False -f process-compose.kafka.yaml
+    plan: 8
+    replicas: 1
+    isPublic: false
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+        - port: 9093
+          isPublic: false
+      paths: []
