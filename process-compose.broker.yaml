@@ -1,0 +1,7 @@
+version: "0.5"
+
+processes:
+  kafka:
+    command: . .env.broker && ./scripts/run-broker.sh
+  healthprobe:
+    command: python3 -m http.server 3000

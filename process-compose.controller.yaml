@@ -1,0 +1,11 @@
+version: "0.5"
+
+processes:
+  kafka:
+    command: . .env.controller && cd kafka_2.13-4.0.0 && bin/kafka-server-start.sh config/controller.properties
+    ready_log_line: "Kafka Server started"
+  healthprobe:
+    command: python3 -m http.server 3000
+    depends_on:
+      kafka:
+        condition: process_log_ready

@@ -1,0 +1,20 @@
+# CONTROLLER KONFIGURATION
+
+############################# Server Basics #############################
+process.roles=controller
+
+node.id=1
+
+controller.quorum.voters=1@ws-server-67705-kafka-controller.workspaces:9094
+
+############################# Socket Server Settings #############################
+listeners=CONTROLLER://0.0.0.0:9094
+
+# Der Name des Controller-Listeners.
+controller.listener.names=CONTROLLER
+
+# Mapping des Listener-Namens auf das Sicherheitsprotokoll.
+listener.security.protocol.map=CONTROLLER:PLAINTEXT
+
+############################# Log Basics #############################
+log.dirs=/home/user/app/.codesphere-internal/kafka-logs-controller

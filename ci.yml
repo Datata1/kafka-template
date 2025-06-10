@@ -1,0 +1,50 @@
+schemaVersion: v0.2
+prepare:
+  steps:
+    - name: "install cs-go "
+      command: mkdir -p $HOME/.local/bin && wget -qO-
+        'https://api.github.com/repos/codesphere-cloud/cs-go/releases/latest' |
+        grep linux_amd64 | grep browser_download_url | sed s/.*https/https/ |
+        sed s/\".*$// | xargs wget -O $HOME/.local/bin/cs && chmod +x
+        $HOME/.local/bin/cs
+    - command: chmod +x ./scripts/*.sh
+    - name: install nix dependencies
+      command: ./scripts/install-nix-packages.sh
+    - name: install kafka and setup SSL
+      command: ./scripts/setup-kafka.sh
+    - name: create cluster id
+      command: ./scripts/setup-cluster-id.sh
+    - name: setup controller and broker
+      command: ./scripts/setup-controller.sh && ./scripts/setup-broker.sh
+test:
+  steps:
+    - name: "TODO: add tests for every service"
+      command: 'echo "TODO: add tests for every service"'
+run:
+  kafka-broker:
+    steps:
+      - name: "start Kafka "
+        command: process-compose -t=False -f process-compose.broker.yaml
+    plan: 8
+    replicas: 1
+    isPublic: false
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+        - port: 9093
+          isPublic: false
+      paths: []
+  kafka-controller:
+    steps:
+      - command: process-compose -t=False -f process-compose.controller.yaml
+    plan: 8
+    replicas: 1
+    isPublic: false
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+        - port: 9094
+          isPublic: false
+      paths: []
