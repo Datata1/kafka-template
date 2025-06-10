@@ -5,14 +5,14 @@ process.roles=broker
 
 node.id=2
 
-controller.quorum.voters=1@ws-server-67705-kafka-controller.workspaces:9094
+controller.quorum.voters=1@ws-server-67763-kafka-controller.workspaces:9094
 
 controller.listener.names=CONTROLLER
 
 ############################# Socket Server Settings #############################
 listeners=SSL://0.0.0.0:9093
 
-advertised.listeners=SSL://ws-server-67705-kafka-broker.workspaces:9093
+advertised.listeners=SSL://ws-server-67763-kafka-broker.workspaces:9093
 
 inter.broker.listener.name=SSL
 

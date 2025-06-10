@@ -16,6 +16,9 @@ prepare:
       command: ./scripts/setup-cluster-id.sh
     - name: setup controller and broker
       command: ./scripts/setup-controller.sh && ./scripts/setup-broker.sh
+    - name: download akhq
+      command: wget
+        https://github.com/tchiotludo/akhq/releases/download/0.25.1/akhq-0.25.1-all.jar
 test:
   steps:
     - name: "TODO: add tests for every service"
@@ -48,3 +51,19 @@ run:
         - port: 9094
           isPublic: false
       paths: []
+  akhq:
+    steps:
+      - command: process-compose -t=False -f process-compose.akhq.yaml
+    plan: 8
+    replicas: 1
+    isPublic: true
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+        - port: 8081
+          isPublic: true
+      paths:
+        - port: 8081
+          path: /
+          stripPath: false

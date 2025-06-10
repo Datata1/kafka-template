@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HEALTH_CHECK_URL="http://ws-server-67751-kafka-controller.workspaces:3000"
+HEALTH_CHECK_URL="http://ws-server-$WORKSPACE_ID-kafka-controller.workspaces:3000"
 KAFKA_DIR="kafka_2.13-4.0.0"
 CONFIG_FILE="config/broker.properties"
 

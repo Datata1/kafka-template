@@ -5,10 +5,14 @@ process.roles=controller
 
 node.id=1
 
-controller.quorum.voters=1@ws-server-67705-kafka-controller.workspaces:9094
+controller.quorum.voters=1@ws-server-67763-kafka-controller.workspaces:9094
+controller.quorum.bootstrap.servers=ws-server-67763-kafka-controller.workspaces.com:9094
 
 ############################# Socket Server Settings #############################
 listeners=CONTROLLER://0.0.0.0:9094
+
+advertised.listeners=CONTROLLER://ws-server-67763-kafka-controller.workspaces:9094
+
 
 # Der Name des Controller-Listeners.
 controller.listener.names=CONTROLLER

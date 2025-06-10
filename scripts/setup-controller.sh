@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: set up multiple controller at the same time. the number of controllers should be dynamic.
+# What we have to do: create for each controller a new service, create for each controller a seperate log directory. create for each controller a custom .property file
+
 set -e 
 
 echo "copy controller setting"
@@ -14,7 +17,7 @@ if [ ! -f "$LOG_DIR/meta.properties" ]; then
     echo "Formatiere neuen Kafka-Speicher..."
     (
         cd kafka_2.13-4.0.0 && \
-        bin/kafka-storage.sh format -t "$UUID" -c config/controller.properties --standalone
+        bin/kafka-storage.sh format -t "$KAFKA_CLUSTER_ID" -c config/controller.properties --standalone
     )
     echo "Formatierung abgeschlossen."
 else

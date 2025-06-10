@@ -5,7 +5,7 @@ set -e
 # --- Configuration ---
 CERTS_DIR="./certs"
 PASSWORD="meinPasswort" 
-HOSTNAME="ws-server-67705-kafka-controller.workspaces"
+HOSTNAME="ws-server-${WORKSPACE_ID}-kafka-broker.workspaces"
 KEYSTORE_FILE="${CERTS_DIR}/kafka.server.keystore.jks"
 TRUSTSTORE_FILE="${CERTS_DIR}/kafka.client.truststore.jks"
 

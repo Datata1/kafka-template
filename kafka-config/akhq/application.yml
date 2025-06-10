@@ -1,0 +1,20 @@
+micronaut:
+  server:
+    port: 8081
+
+akhq:
+  server:
+    context-path: /
+    access-log: 
+      enabled: true 
+      name: org.akhq.log.access
+  connections:
+    test:
+      properties:
+        bootstrap.servers: "ws-server-67763-kafka-broker.workspaces:9093"
+        security.protocol: SSL
+        ssl.truststore.location: "/home/user/app/certs/kafka.client.truststore.jks"
+        ssl.truststore.password: "meinPasswort"
+        ssl.keystore.location: "/home/user/app/certs/kafka.server.keystore.jks"
+        ssl.keystore.password: "meinPasswort"
+        ssl.key.password: "meinPasswort"
